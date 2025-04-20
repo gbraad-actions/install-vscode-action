@@ -12,7 +12,7 @@ runs:
 
     - name: 'Install VS Code'
       run: |
-        Start-Process -FilePath "vscode-setup.exe" -ArgumentList "/VERYSILENT /NORESTART" -NoNewWindow -Wait
+        Start-Process -FilePath "vscode-setup.exe" -ArgumentList "/VERYSILENT /NORESTART /MERGETASKS=!runcode" -NoNewWindow -Wait
       shell: pwsh
 
     - name: 'Clean Up'
