@@ -1,0 +1,21 @@
+name: 'Install Visual Studio Code on Windows Runner'
+description: 'This action installs Visual Studio Code on a Windows runner using an unattended install.'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: 'Download VS Code Installer'
+      run: |
+        $vscodeUrl = "https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-user"
+        Invoke-WebRequest -Uri $vscodeUrl -OutFile vscode-setup.exe
+      shell: pwsh
+
+    - name: 'Install VS Code'
+      run: |
+        Start-Process -FilePath "vscode-setup.exe" -ArgumentList "/VERYSILENT /NORESTART" -NoNewWindow -Wait
+      shell: pwsh
+
+    - name: 'Clean Up'
+      run: |
+        Remove-Item -Path "vscode-setup.exe" -Force
+      shell: pwsh
