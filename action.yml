@@ -15,6 +15,11 @@ runs:
         Start-Process -FilePath "vscode-setup.exe" -ArgumentList "/VERYSILENT /NORESTART /MERGETASKS=!runcode" -NoNewWindow -Wait
       shell: pwsh
 
+    - name: 'Export path'
+      run: |
+        "C:\Users\runneradmin\AppData\Local\Programs\Microsoft VS Code\bin" >> $env:GITHUB_PATH
+      shell: pwsh
+
     - name: 'Clean Up'
       run: |
         Remove-Item -Path "vscode-setup.exe" -Force
